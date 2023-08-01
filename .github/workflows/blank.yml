@@ -1,0 +1,24 @@
+name: Pull Request trigger
+on:
+  pull_request:
+    types:
+      -opened
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*'
+      - 'feat/**'
+    paths:
+      - 'web/*.js'
+    paths-ignore:
+      - '.github/workflows/*'
+
+jobs:
+  check-code:
+    runs-on: windows-2019
+    steps:
+      - name: download code
+        uses: actions/checkout@v3
+      - name: Confirmation
+        run: echo "Completed"
